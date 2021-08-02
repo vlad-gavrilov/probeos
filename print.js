@@ -1,19 +1,21 @@
 const { table } = require('table');
 const info = require('./probe');
 
+const dictionary = global.dict;
+
 module.exports = {
   commonInfo() {
-    console.log('Общая информация о системе:');
+    console.log(dictionary.commonInfo);
     console.log(table(info.getCommonInfo()));
   },
 
   procInfo() {
-    console.log('Информация о процессоре:');
+    console.log(dictionary.processorInfo);
     console.log(table(info.getProcInfo()));
   },
 
   networkInfo() {
-    console.log('Информация о сетевых интерфейсах:');
+    console.log(dictionary.interfacesInfo);
     console.log(table(info.getNetworkInfo()));
   },
 };

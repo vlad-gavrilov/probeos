@@ -1,31 +1,34 @@
 const inquirer = require('inquirer');
 const argv = require('minimist')(process.argv.slice(2));
+global.dict = require('./internationalization')(argv.lang ?? 'en');
 const print = require('./print');
+
+const dictionary = global.dict;
 
 function prompt(question) {
   inquirer.prompt(question)
     .then((ans) => {
       switch (ans.usersSelection) {
-        case 'Получить общую информацию':
+        case dictionary.getCommonInfo:
           print.commonInfo();
           prompt(question);
           break;
-        case 'Получить информацию о процессоре':
+        case dictionary.getProcessorInfo:
           print.procInfo();
           prompt(question);
           break;
-        case 'Получить информацию о сетевом интерфейсе':
+        case dictionary.getInterfacesInfo:
           print.networkInfo();
           prompt(question);
           break;
-        case 'Получить всю информацию о системе':
+        case dictionary.getAllInfo:
           print.commonInfo();
           print.procInfo();
           print.networkInfo();
           prompt(question);
           break;
-        case 'Выход':
-          console.log('Пока!');
+        case dictionary.exit:
+          console.log(dictionary.farewell);
           break;
         default:
           break;
@@ -43,13 +46,13 @@ if (argv.c || argv.info === 'common' || argv.i === 0) {
   const question = [{
     type: 'list',
     name: 'usersSelection',
-    message: 'Выберите действие:',
+    message: dictionary.selectAction,
     choices: [
-      'Получить общую информацию',
-      'Получить информацию о процессоре',
-      'Получить информацию о сетевом интерфейсе',
-      'Получить всю информацию о системе',
-      'Выход',
+      dictionary.getCommonInfo,
+      dictionary.getProcessorInfo,
+      dictionary.getInterfacesInfo,
+      dictionary.getAllInfo,
+      dictionary.exit,
     ],
     filter(val) {
       return val;
