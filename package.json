@@ -13,6 +13,11 @@
     "system",
     "cli"
   ],
+  "homepage": "https://github.com/vlad-gavrilov/probeos",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vlad-gavrilov/probeos.git"
+  },
   "bin": {
     "probeos": "./bin/global.js"
   },
