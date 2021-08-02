@@ -2,9 +2,9 @@
   "name": "probeos",
   "version": "0.0.2",
   "description": "This package probes the operating system on which it is running",
-  "main": "main.js",
+  "main": "./lib/main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node ./lib/main.js"
   },
   "keywords": [
     "node",
@@ -13,6 +13,10 @@
     "system",
     "cli"
   ],
+  "bin": {
+    "probeos": "./bin/global.js"
+  },
+  "preferGlobal": true,
   "author": "vlad-gavrilov",
   "license": "MIT",
   "dependencies": {
